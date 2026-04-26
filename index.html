@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>2026 歐洲之旅 ✈️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#F5F5F3; --card:#fff; --tp:#1a1a1a; --ts:#6b6b6b; --tm:#aaa; --border:#ebebeb;
+  --shadow:0 2px 16px rgba(0,0,0,.06); --r:16px; --rs:10px;
+  --lb:#D6E8F5; --la:#4A90C4; --ll:#EBF4FB;
+  --bb:#F2E8D6; --ba:#C4963A; --bl:#FAF3E8;
+  --ab:#D6EDD9; --aa:#4A9E58; --al:#EBF6EC;
+  --tb:#EDE6F5; --ta:#8B6BB1; --tl:#F5F0FC;
+  --paid-bg:#E8F5EC; --paid-c:#2E7D52;
+  --pass-bg:#FFF3E0; --pass-c:#E65100;
+  --free-bg:#F0F4FF; --free-c:#3F51B5;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--tp);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* ── HEADER ── */
+.hd{background:#fff;border-bottom:1px solid var(--border);padding:18px 18px 14px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.hd-title{font-family:'Playfair Display',serif;font-size:21px;letter-spacing:.4px}
+.hd-sub{font-size:11px;color:var(--ts);margin-top:2px}
+.hd-pills{display:flex;gap:7px;margin-top:9px;flex-wrap:wrap}
+.pill{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500}
+.pl{background:var(--lb);color:var(--la)}
+.pb{background:var(--bb);color:var(--ba)}
+.pa{background:var(--ab);color:var(--aa)}
+
+/* ── CONTAINER ── */
+.wrap{max-width:480px;margin:0 auto;padding:14px 12px 48px}
+
+/* ── DAY CARD = <details> ── */
+details.dc{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);margin-bottom:13px;overflow:hidden}
+summary.dh{display:flex;align-items:center;justify-content:space-between;padding:14px 15px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;border-left:4px solid transparent;list-style:none;min-height:72px}
+summary.dh::-webkit-details-marker{display:none}
+summary.dh::marker{display:none}
+summary.dh:active{opacity:.82}
+summary.dh.lo{border-left-color:var(--la);background:linear-gradient(to right,var(--ll),#fff)}
+summary.dh.be{border-left-color:var(--ba);background:linear-gradient(to right,var(--bl),#fff)}
+summary.dh.am{border-left-color:var(--aa);background:linear-gradient(to right,var(--al),#fff)}
+summary.dh.tr{border-left-color:var(--ta);background:linear-gradient(to right,var(--tl),#fff)}
+summary.dh.fl{border-left-color:#90A4AE;background:linear-gradient(to right,#ECEFF1,#fff)}
+.dl{display:flex;flex-direction:column;gap:2px;flex:1}
+.dn{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--tm)}
+.dd{font-size:16px;font-weight:700}
+.dc-city{font-size:12px;color:var(--ts)}
+.arr{width:30px;height:30px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;color:var(--tm);transition:transform .25s ease}
+details[open] .arr{transform:rotate(180deg)}
+.dbi{padding:0 11px 13px}
+
+/* ── WEATHER BAR ── */
+a.wb{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px 12px;margin-bottom:11px;text-decoration:none;-webkit-tap-highlight-color:transparent}
+a.wb:active{background:#F0F7FF}
+.wb-em{font-size:19px;letter-spacing:2px}
+.wb-t{flex:1;display:flex;flex-direction:column;gap:1px}
+.wb-lbl{font-size:10px;font-weight:700;color:var(--tm);text-transform:uppercase;letter-spacing:.8px}
+.wb-city{font-size:12px;color:#1a73e8;font-weight:500}
+.wb-arr{font-size:14px;color:var(--tm)}
+
+/* ── TRANSIT BLOCK ── */
+.trb{background:linear-gradient(135deg,var(--tl),#fff);border:1px dashed var(--ta);border-radius:var(--rs);padding:11px 13px;margin-bottom:10px;display:flex;gap:10px;align-items:flex-start}
+.tri{font-size:21px;flex-shrink:0;margin-top:2px}
+.trl{font-size:11px;font-weight:700;color:var(--ta);letter-spacing:.5px;text-transform:uppercase;margin-bottom:3px}
+.trd{font-size:12.5px;color:var(--ts);line-height:1.5}
+.trp{display:inline-block;margin-top:5px;background:var(--tb);color:var(--ta);font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px}
+
+/* ── SPOT CARD ── */
+.sc{background:var(--bg);border-radius:var(--rs);padding:12px 12px;margin-bottom:9px;border:1px solid var(--border)}
+.st{display:flex;align-items:flex-start;justify-content:space-between;gap:7px;margin-bottom:7px}
+.sn{font-size:14px;font-weight:700;line-height:1.3;flex:1}
+.stb{font-size:10px;background:#f0f0f0;color:var(--ts);padding:2px 7px;border-radius:20px;white-space:nowrap;font-weight:500;flex-shrink:0}
+
+/* appt time */
+.at{display:flex;align-items:center;gap:8px;background:linear-gradient(135deg,#FFF3E0,#FFE0B2);border:1.5px solid #FF8F00;border-radius:9px;padding:7px 12px;margin-bottom:8px}
+.at-ic{font-size:18px;flex-shrink:0}
+.at-lbl{font-size:10px;font-weight:700;color:#E65100;text-transform:uppercase;letter-spacing:.7px;line-height:1;margin-bottom:2px}
+.at-val{font-size:20px;font-weight:900;color:#BF360C;line-height:1}
+.at-note{font-size:10px;color:#E65100;margin-top:1px}
+
+/* tags */
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:8px}
+.tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px}
+.t-paid{background:var(--paid-bg);color:var(--paid-c)}
+.t-bkd{background:#E3F2FD;color:#1565C0}
+.t-pass{background:var(--pass-bg);color:var(--pass-c)}
+.t-free{background:var(--free-bg);color:var(--free-c)}
+.t-fee{background:#F5F5F5;color:#555;border:1px solid #ddd}
+
+/* points */
+ul.pts{list-style:none;margin-bottom:9px}
+ul.pts li{font-size:12.5px;color:var(--ts);padding:3px 0 3px 15px;position:relative;line-height:1.5}
+ul.pts li::before{content:'·';position:absolute;left:4px;font-size:16px;line-height:1.2;color:var(--tm)}
+
+/* hours link */
+a.hl{display:inline-flex;align-items:center;gap:4px;background:#fff;border:1px solid var(--border);border-radius:8px;padding:5px 10px;font-size:11px;color:#1a73e8;text-decoration:none;font-weight:500;margin-bottom:8px;-webkit-tap-highlight-color:transparent}
+a.hl:active{background:#E8F0FE}
+
+/* map btn */
+a.mb{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:8px;background:#fff;border:1.5px solid var(--border);border-radius:8px;font-family:'Noto Sans TC',sans-serif;font-size:12px;font-weight:600;color:#4285F4;text-decoration:none;-webkit-tap-highlight-color:transparent}
+a.mb:active{background:#EEF3FF;border-color:#4285F4}
+
+/* empty */
+.emp{text-align:center;padding:18px 0 8px;color:var(--tm);font-size:13px}
+.emp .bi{font-size:34px;display:block;margin-bottom:8px}
+
+/* note */
+.note{font-size:11px;color:#C4963A;margin-bottom:6px}
+</style>
+</head>
+<body>
+
+<header class="hd">
+  <div class="hd-title">✈️ 2026 歐洲之旅</div>
+  <div class="hd-sub">05/08 – 05/22 · 15 天 · 英國 · 比利時 · 荷蘭</div>
+  <div class="hd-pills">
+    <span class="pill pl">🇬🇧 倫敦 Day 1–7</span>
+    <span class="pill pb">🇧🇪 比利時 Day 8–10</span>
+    <span class="pill pa">🇳🇱 阿姆斯特丹 Day 11–15</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ══════════════════════════════════════
+     DAY 1
+══════════════════════════════════════ -->
+<details class="dc">
+<summary class="dh fl">
+  <div class="dl"><div class="dn">Day 1 · 移動日</div><div class="dd">05/08 週五</div><div class="dc-city">✈️ 桃園 → 倫敦</div></div>
+  <div class="arr">▾</div>
+</summary>
+<div class="dbi">
+  <a class="wb" href="https://www.google.com/search?q=London+weather" target="_blank" rel="noopener">
+    <div class="wb-em">🌦️ 🇬🇧</div><div class="wb-t"><div class="wb-lbl">今日天氣預報</div><div class="wb-city">點此查看 London 天氣</div></div><div class="wb-arr">›</div>
+  </a>
+  <div class="trb">
+    <div class="tri">✈️</div>
+    <div>
+      <div class="trl">出發日 · 長途飛行</div>
+      <div class="trd">06:00 桃園機場第一航廈 出發<br>搭機飛往倫敦希思羅機場<br>16:30 抵達希思羅第三航廈</div>
+    </div>
+  </div>
+  <div class="emp"><span class="bi">🛫</span>抵達後前往住宿，準備明天的行程！</div>
+</div>
+</details>
+
+<!-- ══════════════════════════════════════
+     DAY 2
+══════════════════════════════════════ -->
+<details class="dc">
+<summary class="dh lo">
+  <div class="dl"><div class="dn">Day 2 · 6 個景點</div><div class="dd">05/09 週六</div><div class="dc-city">🇬🇧 倫敦</div></div>
+  <div class="arr">▾</div>
+</summary>
+<div class="dbi">
+  <a class="wb" href="https://www.google.com/search?q=London+weather" target="_blank" rel="noopener">
+    <div class="wb-em">🌦️ 🇬🇧</div><div class="wb-t"><div class="wb-lbl">今日天氣預報</div><div class="wb-city">點此查看 London 天氣</div></div><div class="wb-arr">›</div>
+  </a>
+
+  <!-- Platform 9¾ -->
+  <div class="sc">
+    <div class="st"><div class="sn">Platform 9¾</div><span class="stb">🕐 08:00開</span></div>
+    <div class="tags"><span class="tag t-free">🆓 免費</span></div>
+    <ul class="pts">
+      <li>哈利波特魔法世界的標誌性入口，位於King's Cross車站</li>
+      <li>有專屬拍照區及魔法道具，每日早上8:00即可前往</li>
+      <li>旁邊有哈利波特官方紀念品店，紀念品豐富</li>
+    </ul>
+    <a class="hl" href="https://www.google.com/search?q=Platform+9%C2%BE+King%27s+Cross+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a>
+    <a class="mb" href="https://www.google.com/maps/search/?api=1&query=Platform+9+3%2F4+King%27s+Cross+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a>
+  </div>
+
+  <!-- 大英博物館 -->
+  <div class="sc">
+    <div class="st"><div class="sn">大英博物館</div></div>
+    <div class="at"><div class="at-ic">⏰</div><div><div class="at-lbl">預約時間 · 準時抵達</div><div class="at-val">10:40</div><div class="at-note">語音APP已付，準時入場</div></div></div>
+    <div class="tags"><span class="tag t-paid">✅ 已支付</span><span class="tag t-bkd">📌 語音APP已付</span></div>
+    <ul class="pts">
+      <li>世界最大博物館之一，收藏超過800萬件文物，包含羅塞塔石碑</li>
+      <li>古埃及、希臘羅馬、中國等文明館藏極為豐富，建議至少留3–4小時</li>
+      <li>需提前下載語音導覽APP，費用已付款完成</li>
+    </ul>
+    <a class="hl" href="https://www.google.com/search?q=%E5%A4%A7%E8%8B%B1%E5%8D%9A%E7%89%A9%E9%A4%A8+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a>
+    <a class="mb" href="https://www.google.com/maps/search/?api=1&query=British+Museum+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a>
+  </div>
+
+  <!-- 柯芬園 -->
+  <div class="sc">
+    <div class="st"><div class="sn">柯芬園 Covent Garden</div></div>
+    <div class="tags"><span class="tag t-free">🆓 免費</span></div>
+    <ul class="pts">
+      <li>倫敦著名的露天市集與藝術廣場，街頭藝人精彩表演不間斷</li>
+      <li>周圍有精品店、餐廳、劇院，是倫敦最具活力的購物區之一</li>
+      <li>注意：週日12:00才開放，週六照常</li>
+    </ul>
+    <a class="hl" href="https://www.google.com/search?q=%E6%9F%AF%E8%8A%AC%E5%9C%92+Covent+Garden+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a>
+    <a class="mb" href="https://www.google.com/maps/search/?api=1&query=Covent+Garden+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a>
+  </div>
+
+  <!-- 國家美術館 -->
+  <div class="sc">
+    <div class="st"><div class="sn">國家美術館</div><span class="stb">🕐 15:30 / 18:00關</span></div>
+    <div class="tags"><span class="tag t-free">🆓 免費</span></div>
+    <ul class="pts">
+      <li>收藏13至19世紀2300餘件西方繪畫名作，包含梵谷、達文西</li>
+      <li>位於特拉法加廣場北側，免費入場，是倫敦必訪藝術殿堂</li>
+      <li>18:00閉館，下午前往需把握時間</li>
+    </ul>
+    <a class="hl" href="https://www.google.com/search?q=%E5%9C%8B%E5%AE%B6%E7%BE%8E%E8%A1%93%E9%A4%A8+London+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a>
+    <a class="mb" href="https://www.google.com/maps/search/?api=1&query=National+Gallery+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a>
+  </div>
+
+  <!-- 特拉法加廣場 -->
+  <div class="sc">
+    <div class="st"><div class="sn">特拉法加廣場</div></div>
+    <div class="tags"><span class="tag t-free">🆓 免費</span></div>
+    <ul class="pts">
+      <li>倫敦最著名的地標廣場，中央矗立納爾遜紀念柱</li>
+      <li>廣場四周有四隻銅獅雕像及噴水池，是城市節慶活動中心</li>
+      <li>緊鄰國家美術館，可一併參觀</li>
+    </ul>
+    <a class="hl" href="https://www.google.com/search?q=%E7%89%B9%E6%8B%89%E6%B3%95%E5%8A%A0%E5%BB%A3%E5%A0%B4+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a>
+    <a class="mb" href="https://www.google.com/maps/search/?api=1&query=Trafalgar+Square+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a>
+  </div>
+
+  <!-- 萊斯特廣場 → Selfridges -->
+  <div class="sc">
+    <div class="st"><div class="sn">萊斯特廣場 → Regent St. → Selfridges</div></div>
+    <div class="tags"><span class="tag t-free">🆓 免費</span></div>
+    <ul class="pts">
+      <li>萊斯特廣場是倫敦娛樂中心，電影首映會常在此舉行</li>
+      <li>Regent Street是倫敦最優雅的購物大道，Apple Store、Burberry等名店雲集</li>
+      <li>Selfridges是英國頂級百貨，美食樓層與設計師品牌應有盡有</li>
+    </ul>
+    <a class="hl" href="https://www.google.com/search?q=Selfridges+London+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a>
+    <a class="mb" href="https://www.google.com/maps/search/?api=1&query=Selfridges+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a>
+  </div>
+</div>
+</details>
+
+<!-- ══════════════════════════════════════
+     DAY 3
+══════════════════════════════════════ -->
+<details class="dc">
+<summary class="dh lo">
+  <div class="dl"><div class="dn">Day 3 · 8 個景點</div><div class="dd">05/10 週日</div><div class="dc-city">🇬🇧 倫敦</div></div>
+  <div class="arr">▾</div>
+</summary>
+<div class="dbi">
+  <a class="wb" href="https://www.google.com/search?q=London+weather" target="_blank" rel="noopener">
+    <div class="wb-em">🌦️ 🇬🇧</div><div class="wb-t"><div class="wb-lbl">今日天氣預報</div><div class="wb-city">點此查看 London 天氣</div></div><div class="wb-arr">›</div>
+  </a>
+
+  <div class="sc"><div class="st"><div class="sn">波羅市場 Borough Market</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>倫敦歷史最悠久的食品市集，超過1000年歷史，每週四至週日開放</li><li>匯聚來自各地的精緻食材、熟食攤位與街頭小吃，是美食愛好者天堂</li><li>緊鄰南華克大橋，拍照景致極佳</li></ul><a class="hl" href="https://www.google.com/search?q=Borough+Market+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Borough+Market+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">碎片塔 The Shard</div></div><div class="tags"><span class="tag t-pass">🎫 PASS可用</span><span class="tag t-fee">💰 £19</span></div><ul class="pts"><li>西歐最高建築之一，高310公尺，72層玻璃帷幕設計如碎片鑽石</li><li>觀景台可俯瞰泰晤士河與整個倫敦市容，視野絕佳</li><li>PASS可用，建議提前確認時段</li></ul><a class="hl" href="https://www.google.com/search?q=The+Shard+London+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=The+Shard+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">Five Guys Tower Bridge 拍照點</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>倫敦塔橋旁著名的漢堡餐廳，外觀即是熱門打卡背景</li><li>可在此取得最佳倫敦塔橋正面視角，適合拍攝全景照</li><li>用餐後步行至塔橋入口非常方便</li></ul><a class="hl" href="https://www.google.com/search?q=Five+Guys+Tower+Bridge+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Five+Guys+Tower+Bridge+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">倫敦塔橋 Tower Bridge</div></div><div class="tags"><span class="tag t-pass">🎫 PASS可用</span><span class="tag t-fee">💰 £18</span></div><ul class="pts"><li>1894年建成的維多利亞式開合橋，是倫敦最具代表性的地標</li><li>可入內參觀橋塔、玻璃地板步道及開橋機械展示</li><li>PASS可用，入內需購票</li></ul><a class="hl" href="https://www.google.com/search?q=Tower+Bridge+London+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Tower+Bridge+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">倫敦塔 Tower of London</div></div><div class="tags"><span class="tag t-pass">🎫 PASS可用</span><span class="tag t-fee">💰 £37</span></div><ul class="pts"><li>已有900年歷史的皇家城堡，曾是監獄、皇宮與刑場</li><li>收藏英王室御用珍寶與皇冠，是倫敦最重要的世界遺產之一</li><li>PASS可用，建議預留2–3小時參觀</li></ul><a class="hl" href="https://www.google.com/search?q=Tower+of+London+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Tower+of+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">利德賀市場 Leadenhall Market</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>建於1881年的維多利亞式有頂市場，彩繪鐵架與石板地極具特色</li><li>哈利波特電影中「斜角巷」場景的實景拍攝地</li><li>現為高端餐廳與精品店，亦是絕佳攝影地點</li></ul><a class="hl" href="https://www.google.com/search?q=Leadenhall+Market+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Leadenhall+Market+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">空中花園 Sky Garden</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><div class="note">⚠️ 需提前於官網預約免費票券</div><ul class="pts"><li>位於Walkie Talkie大樓頂端，倫敦免費觀景台中視野最佳之一</li><li>室內熱帶花園結合餐廳與酒吧，可俯瞰聖保羅座堂與倫敦塔</li><li>需提前於官網預約免費票券，名額有限</li></ul><a class="hl" href="https://www.google.com/search?q=Sky+Garden+London+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Sky+Garden+20+Fenchurch+Street+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">聖保羅座堂 St. Paul's Cathedral</div><span class="stb">🕐 18:00關</span></div><div class="tags"><span class="tag t-pass">🎫 PASS可用</span><span class="tag t-fee">💰 £27</span></div><ul class="pts"><li>英國巴洛克建築傑作，由建築師雷恩爵士設計，圓頂高111公尺</li><li>可爬上圓頂低語廊，體驗迴音奇觀，並俯瞰倫敦全景</li><li>PASS可用，18:00閉館，需把握時間</li></ul><a class="hl" href="https://www.google.com/search?q=St+Paul%27s+Cathedral+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=St+Paul%27s+Cathedral+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+</div>
+</details>
+
+<!-- ══════════════════════════════════════
+     DAY 4
+══════════════════════════════════════ -->
+<details class="dc">
+<summary class="dh lo">
+  <div class="dl"><div class="dn">Day 4 · 8 個景點</div><div class="dd">05/11 週一</div><div class="dc-city">🇬🇧 倫敦</div></div>
+  <div class="arr">▾</div>
+</summary>
+<div class="dbi">
+  <a class="wb" href="https://www.google.com/search?q=London+weather" target="_blank" rel="noopener">
+    <div class="wb-em">🌦️ 🇬🇧</div><div class="wb-t"><div class="wb-lbl">今日天氣預報</div><div class="wb-city">點此查看 London 天氣</div></div><div class="wb-arr">›</div>
+  </a>
+
+  <div class="sc"><div class="st"><div class="sn">白金漢宮 Buckingham Palace</div></div><div class="at"><div class="at-ic">⏰</div><div><div class="at-lbl">預約時間 · 準時抵達</div><div class="at-val">10:30</div><div class="at-note">衛兵交接 11:00 開始，務必提早到</div></div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>英國王室官邸，莊嚴氣派，宮前的維多利亞女王紀念碑是最佳拍攝位置</li><li>衛兵交接儀式每日11:00開始，建議10:30前到場佔好位置</li><li>交接約45分鐘，場面壯觀，需參考官方當日確認是否舉行</li></ul><a class="hl" href="https://www.google.com/search?q=%E7%99%BD%E9%87%91%E6%BC%A2%E5%AE%AE+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Buckingham+Palace+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">聖詹姆斯公園 St. James's Park</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>倫敦最古老的皇家公園，擁有美麗的湖泊與各種水鳥</li><li>從公園可遠眺白金漢宮與倫敦眼，景致如畫</li><li>是白金漢宮參觀後放鬆漫步的最佳去處</li></ul><a class="hl" href="https://www.google.com/search?q=St+James%27s+Park+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=St+James%27s+Park+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">西敏寺 Westminster Abbey</div></div><div class="tags"><span class="tag t-bkd">📌 待約</span><span class="tag t-fee">💰 £31</span></div><ul class="pts"><li>英國君主加冕之地，已有超過1000年歷史，是哥德式建築典範</li><li>內有牛頓、達爾文、丘吉爾等歷史名人長眠之地</li><li>票價£31，建議提前預約避免排隊</li></ul><a class="hl" href="https://www.google.com/search?q=Westminster+Abbey+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Westminster+Abbey+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">大本鐘 Big Ben</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>英國議會大廈附設的鐘塔，正式名稱為伊麗莎白塔，高96公尺</li><li>金色鐘面與哥德式外觀是倫敦最具標誌性的城市景觀</li><li>位於西敏橋旁，可與泰晤士河一併取景</li></ul><a class="hl" href="https://www.google.com/search?q=Big+Ben+London+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Big+Ben+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">Bridge Arch Photo 拍照點</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>西敏橋拱廊下的經典倫敦打卡角度，大本鐘與橋梁完美入框</li><li>早晨光線最佳，黃昏亦有迷人氛圍</li><li>免費拍照，無需門票</li></ul><a class="hl" href="https://www.google.com/search?q=Westminster+Bridge+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Westminster+Bridge+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">The Graffiti Tunnel</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>位於Leake Street的塗鴉隧道，是倫敦合法的街頭藝術聖地</li><li>藝術家持續更新作品，每次造訪都有不同驚喜</li><li>是攝影愛好者的特色景點，充滿城市藝術氣息</li></ul><a class="hl" href="https://www.google.com/search?q=Leake+Street+Graffiti+Tunnel+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Leake+Street+Graffiti+Tunnel+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">倫敦眼 London Eye（拍照）</div></div><div class="tags"><span class="tag t-free">🆓 免費（外拍）</span></div><ul class="pts"><li>高135公尺的觀景摩天輪，可自外側拍攝其與泰晤士河的壯觀全景</li><li>即使不搭乘，岸邊的免費觀賞角度也非常精彩</li><li>可依預算決定是否購票搭乘（約£30）</li></ul><a class="hl" href="https://www.google.com/search?q=London+Eye+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=London+Eye" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">泰晤士河遊船</div></div><div class="tags"><span class="tag t-pass">🎫 PASS可用</span><span class="tag t-fee">💰 £18</span></div><ul class="pts"><li>從西敏碼頭出發，沿泰晤士河欣賞兩岸著名地標</li><li>PASS可用，可輕鬆銜接沿岸景點，節省交通時間</li><li>建議選擇下午時段，光線較佳且遊人相對較少</li></ul><a class="hl" href="https://www.google.com/search?q=Thames+River+Cruise+Westminster+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Westminster+Pier+Thames+Cruise+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+</div>
+</details>
+
+<!-- ══════════════════════════════════════
+     DAY 5
+══════════════════════════════════════ -->
+<details class="dc">
+<summary class="dh lo">
+  <div class="dl"><div class="dn">Day 5 · 4 個景點</div><div class="dd">05/12 週二</div><div class="dc-city">🇬🇧 倫敦</div></div>
+  <div class="arr">▾</div>
+</summary>
+<div class="dbi">
+  <a class="wb" href="https://www.google.com/search?q=London+weather" target="_blank" rel="noopener">
+    <div class="wb-em">🌦️ 🇬🇧</div><div class="wb-t"><div class="wb-lbl">今日天氣預報</div><div class="wb-city">點此查看 London 天氣</div></div><div class="wb-arr">›</div>
+  </a>
+
+  <div class="sc"><div class="st"><div class="sn">Camden Market 肯頓市集</div><span class="stb">🕐 10:00開</span></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>倫敦最著名的另類市集，擁有超過1000個攤位，充滿龐克與波西米亞氛圍</li><li>美食區「Camden Lock」匯聚全球各地料理，是絕佳午餐選擇</li><li>建議約10:00出發，下午前往下一站</li></ul><a class="hl" href="https://www.google.com/search?q=Camden+Market+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Camden+Market+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">自然史博物館 Natural History Museum</div></div><div class="at"><div class="at-ic">⏰</div><div><div class="at-lbl">預約時間 · 準時抵達</div><div class="at-val">15:00</div><div class="at-note">已訂票，17:50閉館前入場</div></div></div><div class="tags"><span class="tag t-paid">✅ 已支付</span><span class="tag t-bkd">📌 已訂</span></div><ul class="pts"><li>擁有超過8000萬件自然標本，包含著名的恐龍骨架與隕石展示</li><li>維多利亞式哥德建築外觀本身即是藝術品，免費入場</li><li>17:50閉館，15:00入場需把握時間，票券已訂</li></ul><a class="hl" href="https://www.google.com/search?q=Natural+History+Museum+London+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Natural+History+Museum+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">V&amp;A 博物館</div><span class="stb">🕐 17:45關</span></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>維多利亞與亞伯特博物館，收藏全球最豐富的裝飾藝術與設計藏品</li><li>涵蓋時尚、珠寶、建築、攝影等多元領域，免費入場</li><li>與自然史博物館相鄰，來不及當天可改排其他天</li></ul><a class="hl" href="https://www.google.com/search?q=V%26A+Museum+London+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Victoria+and+Albert+Museum+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">哈洛德百貨 Harrods</div><span class="stb">🕐 22:00關</span></div><div class="tags"><span class="tag t-free">🆓 免費入場</span></div><ul class="pts"><li>英國最著名的頂級百貨公司，從1849年創立至今，佔地面積超過7層樓</li><li>地下食品部是全球知名的美食殿堂，建議至少逛一層</li><li>22:00才閉館，晚上也可輕鬆前往</li></ul><a class="hl" href="https://www.google.com/search?q=Harrods+London+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Harrods+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+</div>
+</details>
+
+<!-- ══════════════════════════════════════
+     DAY 6
+══════════════════════════════════════ -->
+<details class="dc">
+<summary class="dh lo">
+  <div class="dl"><div class="dn">Day 6 · 2 個景點</div><div class="dd">05/13 週三</div><div class="dc-city">🇬🇧 倫敦</div></div>
+  <div class="arr">▾</div>
+</summary>
+<div class="dbi">
+  <a class="wb" href="https://www.google.com/search?q=London+weather" target="_blank" rel="noopener">
+    <div class="wb-em">🌦️ 🇬🇧</div><div class="wb-t"><div class="wb-lbl">今日天氣預報</div><div class="wb-city">點此查看 London 天氣</div></div><div class="wb-arr">›</div>
+  </a>
+
+  <div class="sc"><div class="st"><div class="sn">哈利波特影城 Warner Bros. Studio Tour</div><span class="stb">🕐 全天日歸</span></div><div class="tags"><span class="tag t-bkd">📌 待約</span></div><ul class="pts"><li>位於倫敦北部Watford，完整重現哈利波特系列電影拍攝場景與道具</li><li>包含對角巷、霍格華茲大廳、魔法部等原始布景，粉絲必訪</li><li>建議全天參觀，約下午4–5點返回倫敦</li></ul><a class="hl" href="https://www.google.com/search?q=Warner+Bros+Studio+Tour+London+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Warner+Bros+Studio+Tour+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">音樂劇 West End</div></div><div class="at"><div class="at-ic">⏰</div><div><div class="at-lbl">預約時間 · 準時抵達</div><div class="at-val">19:30</div><div class="at-note">西區劇院，建議提前20分鐘入場</div></div></div><div class="tags"><span class="tag t-bkd">📌 待訂</span></div><ul class="pts"><li>倫敦西區(West End)是全球音樂劇聖地，演出水準世界頂尖</li><li>熱門選擇：獅子王、歌劇魅影、漢密爾頓、Mamma Mia等</li><li>建議提前至少1–2週訂票，以選擇最佳座位</li></ul><a class="hl" href="https://www.google.com/search?q=West+End+Musical+London+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=West+End+Theatre+London" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+</div>
+</details>
+
+<!-- ══════════════════════════════════════
+     DAY 7
+══════════════════════════════════════ -->
+<details class="dc">
+<summary class="dh lo">
+  <div class="dl"><div class="dn">Day 7 · 待規劃</div><div class="dd">05/14 週四</div><div class="dc-city">🇬🇧 倫敦（近郊待排）</div></div>
+  <div class="arr">▾</div>
+</summary>
+<div class="dbi">
+  <a class="wb" href="https://www.google.com/search?q=London+weather" target="_blank" rel="noopener">
+    <div class="wb-em">🌦️ 🇬🇧</div><div class="wb-t"><div class="wb-lbl">今日天氣預報</div><div class="wb-city">點此查看 London 天氣</div></div><div class="wb-arr">›</div>
+  </a>
+  <div class="emp"><span class="bi">🗺️</span>近郊行程規劃中<br><br><span style="font-size:12px">可選：巴斯、牛津、劍橋、溫莎城堡等一日遊</span></div>
+</div>
+</details>
+
+<!-- ══════════════════════════════════════
+     DAY 8
+══════════════════════════════════════ -->
+<details class="dc">
+<summary class="dh tr">
+  <div class="dl"><div class="dn">Day 8 · 7 個景點</div><div class="dd">05/15 週五</div><div class="dc-city">🇬🇧 倫敦 → 🇧🇪 布魯塞爾 → 根特</div></div>
+  <div class="arr">▾</div>
+</summary>
+<div class="dbi">
+  <a class="wb" href="https://www.google.com/search?q=Ghent+weather" target="_blank" rel="noopener">
+    <div class="wb-em">⛅ 🇧🇪</div><div class="wb-t"><div class="wb-lbl">今日天氣預報</div><div class="wb-city">點此查看 Ghent 天氣</div></div><div class="wb-arr">›</div>
+  </a>
+  <div class="trb">
+    <div class="tri">🚄</div>
+    <div>
+      <div class="trl">跨國移動 · Eurostar + 火車</div>
+      <div class="trd">倫敦 → 布魯塞爾（Eurostar，約2小時）<br>抵達後放行李至 Numa Brussels Royal Galleries<br>再搭火車前往根特（約30–40分鐘）</div>
+      <span class="trp">🔄 交通細節確認中</span>
+    </div>
+  </div>
+
+  <div class="sc"><div class="st"><div class="sn">聖米歇爾橋 Sint-Michielsbrug</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>根特最美的觀景橋樑，可一次眺望聖尼古拉斯教堂、鐘樓與聖巴夫座堂</li><li>是攝影師公認的根特最佳拍攝角度，黃昏時分尤為美麗</li><li>免費參觀，步行即可抵達</li></ul><a class="hl" href="https://www.google.com/search?q=Sint-Michielsbrug+Ghent+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Sint-Michielsbrug+Ghent+Belgium" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">聖米歇爾大教堂 Sint-Michielskerk</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>根特宏偉的哥德式教堂，外觀白石建築優雅莊嚴</li><li>內部收藏多幅17世紀法蘭德斯名畫，免費參觀</li><li>緊鄰聖米歇爾橋，方便一同遊覽</li></ul><a class="hl" href="https://www.google.com/search?q=Sint-Michielskerk+Ghent+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Sint-Michielskerk+Ghent" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">聖尼古拉斯教堂</div><span class="stb">🕐 16:00關</span></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>根特最古老的教堂之一，建於13世紀，斯海爾德哥德式建築風格</li><li>灰色外牆與厚重石柱展現中世紀宗教建築之美</li><li>16:00關門，需注意參觀時間</li></ul><a class="hl" href="https://www.google.com/search?q=Sint-Niklaaskerk+Ghent+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Sint-Niklaaskerk+Ghent" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">聖巴夫主教座堂 St. Bavo's Cathedral</div><span class="stb">🕐 17:30關</span></div><div class="tags"><span class="tag t-free">🆓 部分免費</span></div><ul class="pts"><li>收藏著名的《根特祭壇畫》(Ghent Altarpiece)，被譽為北歐繪畫史上最重要作品</li><li>部分區域免費，《根特祭壇畫》需另行購票參觀</li><li>17:30閉館，盡早前往</li></ul><a class="hl" href="https://www.google.com/search?q=Saint+Bavo%27s+Cathedral+Ghent+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Saint+Bavo%27s+Cathedral+Ghent" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">根特市政廳 Ghent City Hall</div><span class="stb">🕐 17:30關</span></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>結合哥德式與文藝復興風格的市政廳建築，外觀裝飾細緻精美</li><li>17:30閉館，簡單在外觀賞即可</li><li>與聖尼古拉斯教堂相鄰，可步行串聯</li></ul><a class="hl" href="https://www.google.com/search?q=Ghent+City+Hall+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Ghent+City+Hall+Belgium" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">Graffiti Street 根特塗鴉街</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>根特著名的合法塗鴉街道，充滿色彩鮮豔的街頭藝術</li><li>與倫敦Leake Street類似，是城市青年文化的展示舞台</li><li>夜晚燈光照射下的塗鴉特別上鏡</li></ul><a class="hl" href="https://www.google.com/search?q=Werregarenstraat+Ghent+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Werregarenstraat+Ghent" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">河岸晚餐 &amp; 漫步（Graslei）</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>根特Graslei與Korenlei兩側河岸是中世紀商業碼頭，現為餐廳街</li><li>水面倒映中世紀建築的夜景是根特最迷人的一幕</li><li>晚飯後沿河漫步，搭車返回布魯塞爾</li></ul><a class="hl" href="https://www.google.com/search?q=Graslei+Ghent+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Graslei+Ghent+Belgium" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+</div>
+</details>
+
+<!-- ══════════════════════════════════════
+     DAY 9
+══════════════════════════════════════ -->
+<details class="dc">
+<summary class="dh be">
+  <div class="dl"><div class="dn">Day 9 · 8 個景點</div><div class="dd">05/16 週六</div><div class="dc-city">🇧🇪 布魯塞爾 ↔ 布魯日（日歸）</div></div>
+  <div class="arr">▾</div>
+</summary>
+<div class="dbi">
+  <a class="wb" href="https://www.google.com/search?q=Bruges+weather" target="_blank" rel="noopener">
+    <div class="wb-em">⛅ 🇧🇪</div><div class="wb-t"><div class="wb-lbl">今日天氣預報</div><div class="wb-city">點此查看 Bruges 天氣</div></div><div class="wb-arr">›</div>
+  </a>
+  <div class="trb">
+    <div class="tri">🚂</div>
+    <div>
+      <div class="trl">短途移動 · 布魯塞爾 ↔ 布魯日</div>
+      <div class="trd">布魯塞爾出發 → 布魯日（火車約1小時）<br>晚上搭車返回布魯塞爾<br>住宿：Numa Brussels Royal Galleries</div>
+      <span class="trp">🔄 交通細節確認中</span>
+    </div>
+  </div>
+
+  <div class="sc"><div class="st"><div class="sn">聖母教堂 Church of Our Lady</div></div><div class="tags"><span class="tag t-fee">💰 €8–10</span></div><ul class="pts"><li>收藏米開朗基羅唯一生前離開義大利的雕塑《聖母與聖嬰》</li><li>教堂高達122公尺，磚塔是布魯日天際線最高點</li><li>現場購票即可，費用約€8–10</li></ul><a class="hl" href="https://www.google.com/search?q=Church+of+Our+Lady+Bruges+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Church+of+Our+Lady+Bruges+Belgium" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">布魯日鐘樓 Belfry of Bruges</div></div><div class="tags"><span class="tag t-free">🆓 外觀免費</span></div><ul class="pts"><li>13世紀建造的中世紀鐘樓，高83公尺，366步可登頂俯瞰布魯日全景</li><li>電影《殺手沒有假期》拍攝地，鐘樓下方有紀念品市集</li><li>廣場觀賞免費，登頂需另行購票</li></ul><a class="hl" href="https://www.google.com/search?q=Belfry+of+Bruges+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Belfry+of+Bruges+Belgium" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">Market Square 市集廣場</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>布魯日的心臟地帶，四周環繞著色彩繽紛的哥德式市政廳與商業建築</li><li>廣場上有馬車可選擇搭乘，是欣賞全景的好方式</li><li>免費自由參觀，咖啡廳林立適合小歇</li></ul><a class="hl" href="https://www.google.com/search?q=Bruges+Market+Square+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Bruges+Market+Square+Belgium" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">聖血聖殿 Basilica of the Holy Blood</div></div><div class="tags"><span class="tag t-fee">💰 €5</span></div><ul class="pts"><li>分上下兩層禮拜堂，下層為12世紀羅馬式建築，上層為哥德式</li><li>供奉據稱是耶穌基督聖血的聖物，每週五舉行聖血遊行</li><li>聖物區需另行購票，現場買票即可，費用約€5</li></ul><a class="hl" href="https://www.google.com/search?q=Basilica+Holy+Blood+Bruges+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Basilica+of+the+Holy+Blood+Bruges" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">Rosary Quay 玫瑰碼頭</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>布魯日最美麗的運河景觀之一，倒映著中世紀磚造建築</li><li>是攝影愛好者必訪的黃金拍攝點，尤其清晨光線最佳</li><li>免費自由參觀</li></ul><a class="hl" href="https://www.google.com/search?q=Rosary+Quay+Bruges+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Rosary+Quay+Bruges+Belgium" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">半月啤酒廠 De Halve Maan</div></div><div class="tags"></div><ul class="pts"><li>布魯日市區內唯一仍在生產的傳統啤酒廠，創立於1564年</li><li>提供啤酒廠導覽，可看到釀造過程並品嚐自家招牌啤酒</li><li>建議預約導覽參觀，結合品飲體驗</li></ul><a class="hl" href="https://www.google.com/search?q=De+Halve+Maan+Brewery+Bruges+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=De+Halve+Maan+Brewery+Bruges" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">葡萄園皇家貝居安會院</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>列入UNESCO世界遺產的修道院社區，建於13世紀</li><li>白色修院建築環繞草地，春季開滿水仙花，寧靜優美</li><li>免費入院，內部教堂亦可參觀</li></ul><a class="hl" href="https://www.google.com/search?q=Begijnhof+Bruges+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Begijnhof+Bruges+Belgium" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">愛之湖 Minnewater</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>布魯日南側的浪漫湖泊公園，白天鵝優雅漫遊於湖面</li><li>相傳是布魯日愛情傳說的發生地，因此得名「愛之湖」</li><li>緊鄰貝居安會院，可步行串聯參觀</li></ul><a class="hl" href="https://www.google.com/search?q=Minnewater+Bruges+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Minnewater+Lake+Bruges+Belgium" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+</div>
+</details>
+
+<!-- ══════════════════════════════════════
+     DAY 10
+══════════════════════════════════════ -->
+<details class="dc">
+<summary class="dh tr">
+  <div class="dl"><div class="dn">Day 10 · 6 個景點</div><div class="dd">05/17 週日</div><div class="dc-city">🇧🇪 布魯塞爾 → 🇳🇱 阿姆斯特丹</div></div>
+  <div class="arr">▾</div>
+</summary>
+<div class="dbi">
+  <a class="wb" href="https://www.google.com/search?q=Brussels+weather" target="_blank" rel="noopener">
+    <div class="wb-em">⛅ 🇧🇪</div><div class="wb-t"><div class="wb-lbl">今日天氣預報</div><div class="wb-city">點此查看 Brussels 天氣</div></div><div class="wb-arr">›</div>
+  </a>
+  <div class="trb">
+    <div class="tri">🚄</div>
+    <div>
+      <div class="trl">跨國移動 · 火車</div>
+      <div class="trd">早上遊覽布魯塞爾市區<br>下午搭火車前往阿姆斯特丹（約3小時）<br>入住 MEININGER Hotel Amsterdam City West</div>
+      <span class="trp">🔄 交通細節確認中</span>
+    </div>
+  </div>
+
+  <div class="sc"><div class="st"><div class="sn">尿尿小童 Manneken Pis</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>布魯塞爾最著名的小雕像，高約55公分，是城市精神的象徵</li><li>依節日或特殊場合穿著不同服裝，擁有超過1000套服飾收藏</li><li>免費參觀，位於市中心步行可達</li></ul><a class="hl" href="https://www.google.com/search?q=Manneken+Pis+Brussels+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Manneken+Pis+Brussels" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">布魯塞爾大廣場 Grand Place</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>UNESCO世界遺產，被維克多·雨果讚譽為「歐洲最美廣場」</li><li>四周金碧輝煌的哥德式市政廳與行會建築令人嘆為觀止</li><li>每兩年夏季舉行花毯節，以花朵鋪成巨型圖案</li></ul><a class="hl" href="https://www.google.com/search?q=Grand+Place+Brussels+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Grand+Place+Brussels+Belgium" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">尿尿小妹 Jeanneke Pis</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>1985年設立的尿尿小童女版雕像，藏於小巷深處</li><li>雕像外有鐵欄圍著，前方常放著鮮花與小物，充滿趣味</li><li>與尿尿小童相距不遠，步行5分鐘可達</li></ul><a class="hl" href="https://www.google.com/search?q=Jeanneke+Pis+Brussels+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Jeanneke+Pis+Brussels" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">聖休伯特拱廊街</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>建於1847年，歐洲第一條有頂購物拱廊，拱形玻璃屋頂典雅美麗</li><li>匯聚精品巧克力店、書店、古典咖啡廳，是布魯塞爾購物精華</li><li>免費通行，全天開放，建議順路一逛</li></ul><a class="hl" href="https://www.google.com/search?q=Galeries+Royales+Saint-Hubert+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Galeries+Royales+Saint-Hubert+Brussels" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">聖彌額爾聖古都勒主教座堂</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>比利時最重要的哥德式大教堂，建造歷時300年才完工</li><li>白色石灰岩外牆雄偉壯觀，內部彩繪玻璃窗極為精緻</li><li>免費入場，是布魯塞爾宗教建築最高傑作</li></ul><a class="hl" href="https://www.google.com/search?q=%E8%81%96%E5%BD%8C%E9%A1%8D%E7%88%BE%E8%81%96%E5%8F%A4%E9%83%BD%E5%8B%92%E4%B8%BB%E6%95%99%E5%BA%A7%E5%A0%82+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Cathedral+of+St+Michael+and+St+Gudula+Brussels" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">藝術之丘 Mont des Arts</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>布魯塞爾市中心的文化藝術高地，集中多所博物館與音樂廳</li><li>山丘頂端可俯瞰舊城區全景，是城市最佳觀景點之一</li><li>免費進入，景觀開闊，適合最後一瞥布魯塞爾的美</li></ul><a class="hl" href="https://www.google.com/search?q=Mont+des+Arts+Brussels+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Mont+des+Arts+Brussels" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+</div>
+</details>
+
+<!-- ══════════════════════════════════════
+     DAY 11
+══════════════════════════════════════ -->
+<details class="dc">
+<summary class="dh am">
+  <div class="dl"><div class="dn">Day 11 · 4 個景點</div><div class="dd">05/18 週一</div><div class="dc-city">🇳🇱 阿姆斯特丹</div></div>
+  <div class="arr">▾</div>
+</summary>
+<div class="dbi">
+  <a class="wb" href="https://www.google.com/search?q=Amsterdam+weather" target="_blank" rel="noopener">
+    <div class="wb-em">🌤️ 🇳🇱</div><div class="wb-t"><div class="wb-lbl">今日天氣預報</div><div class="wb-city">點此查看 Amsterdam 天氣</div></div><div class="wb-arr">›</div>
+  </a>
+
+  <div class="sc"><div class="st"><div class="sn">花市 Bloemenmarkt</div><span class="stb">🕐 09:30–10:30</span></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>全球唯一建於運河上的浮動花卉市場，鬱金香球莖與花卉琳瑯滿目</li><li>是購買荷蘭鬱金香紀念品的最佳地點，價格實惠</li><li>09:30開市，可在前往博物館前順道參觀</li></ul><a class="hl" href="https://www.google.com/search?q=Bloemenmarkt+Amsterdam+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Bloemenmarkt+Amsterdam" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">荷蘭國家博物館 Rijksmuseum</div></div><div class="at"><div class="at-ic">⏰</div><div><div class="at-lbl">預約時間 · 準時抵達</div><div class="at-val">11:00</div><div class="at-note">已預訂，票價 €25</div></div></div><div class="tags"><span class="tag t-paid">✅ 已支付</span><span class="tag t-bkd">📌 已訂</span><span class="tag t-fee">💰 €25</span></div><ul class="pts"><li>收藏林布蘭《夜巡》與維梅爾《倒牛奶的女僕》等荷蘭黃金時代名作</li><li>博物館本身建築即為藝術品，外觀宏偉，內部裝潢精緻</li><li>票價€25，已預訂，11:00入場</li></ul><a class="hl" href="https://www.google.com/search?q=Rijksmuseum+Amsterdam+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Rijksmuseum+Amsterdam" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">梵谷博物館 Van Gogh Museum</div></div><div class="at"><div class="at-ic">⏰</div><div><div class="at-lbl">預約時間 · 準時抵達</div><div class="at-val">15:00</div><div class="at-note">已預訂，18:00閉館，票價 €25</div></div></div><div class="tags"><span class="tag t-paid">✅ 已支付</span><span class="tag t-bkd">📌 已訂</span><span class="tag t-fee">💰 €25</span></div><ul class="pts"><li>收藏全球最多梵谷真跡，包含《向日葵》《臥室》等代表作</li><li>館內設計以梵谷生平為脈絡，帶領觀眾深入理解其藝術演變</li><li>票價€25，已預訂，15:00入場，18:00閉館需把握時間</li></ul><a class="hl" href="https://www.google.com/search?q=Van+Gogh+Museum+Amsterdam+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Van+Gogh+Museum+Amsterdam" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">紅燈區 De Wallen</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>阿姆斯特丹著名的歷史街區，亦是歐洲最古老的紅燈區之一</li><li>白天為觀光客漫步拍照的熱門景點，保有中世紀運河街道風貌</li><li>夜晚氣氛截然不同，注意個人安全與禮節，請勿對工作者拍照</li></ul><a class="hl" href="https://www.google.com/search?q=De+Wallen+Amsterdam+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=De+Wallen+Amsterdam" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+</div>
+</details>
+
+<!-- ══════════════════════════════════════
+     DAY 12
+══════════════════════════════════════ -->
+<details class="dc">
+<summary class="dh am">
+  <div class="dl"><div class="dn">Day 12 · 4 個景點</div><div class="dd">05/19 週二</div><div class="dc-city">🇳🇱 阿姆斯特丹</div></div>
+  <div class="arr">▾</div>
+</summary>
+<div class="dbi">
+  <a class="wb" href="https://www.google.com/search?q=Amsterdam+weather" target="_blank" rel="noopener">
+    <div class="wb-em">🌤️ 🇳🇱</div><div class="wb-t"><div class="wb-lbl">今日天氣預報</div><div class="wb-city">點此查看 Amsterdam 天氣</div></div><div class="wb-arr">›</div>
+  </a>
+
+  <div class="sc"><div class="st"><div class="sn">Albert Cuyp Markt</div><span class="stb">🕐 09:30–17:00</span></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>阿姆斯特丹最大的日常市集，超過260個攤位，在地人最常光顧</li><li>販售各式荷蘭食材、街頭小吃與日用品，是感受在地生活的好地方</li><li>09:30開市，可作為早上的第一站</li></ul><a class="hl" href="https://www.google.com/search?q=Albert+Cuyp+Markt+Amsterdam+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Albert+Cuyp+Market+Amsterdam" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">喜力啤酒博物館 Heineken Experience</div></div><div class="at"><div class="at-ic">⏰</div><div><div class="at-lbl">預約時間 · 準時抵達</div><div class="at-val">11:00</div><div class="at-note">建議提前線上訂票，票價 €24.5</div></div></div><div class="tags"><span class="tag t-fee">💰 €24.5</span></div><ul class="pts"><li>位於喜力1867年創立的原始釀酒廠，結合互動體驗與品飲導覽</li><li>包含虛擬釀造體驗、品酒教室，門票含兩杯Heineken</li><li>票價€24.5，建議提前線上訂票較為划算</li></ul><a class="hl" href="https://www.google.com/search?q=Heineken+Experience+Amsterdam+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Heineken+Experience+Amsterdam" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">The 9 Streets 九條街</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>阿姆斯特丹最迷人的精品購物區，窄街上聚集設計師選品店與咖啡廳</li><li>17世紀的運河屋建築保存完好，是拍攝荷蘭風情的絕佳背景</li><li>適合悠閒漫步消磨下午時光</li></ul><a class="hl" href="https://www.google.com/search?q=The+9+Streets+Amsterdam+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=The+9+Streets+Amsterdam" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="sc"><div class="st"><div class="sn">安妮之家 Anne Frank House</div></div><div class="tags"><span class="tag t-bkd">📌 待約</span><span class="tag t-fee">💰 €16.5</span></div><ul class="pts"><li>二戰期間安妮·法蘭克與家人躲避納粹迫害的真實地點</li><li>館內保留當時的密室原貌，展示安妮日記手稿，感人至深</li><li>票價€16.5，極度建議提前線上預約（票券非常難搶）</li></ul><a class="hl" href="https://www.google.com/search?q=Anne+Frank+House+Amsterdam+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Anne+Frank+House+Amsterdam" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+</div>
+</details>
+
+<!-- ══════════════════════════════════════
+     DAY 13
+══════════════════════════════════════ -->
+<details class="dc">
+<summary class="dh am">
+  <div class="dl"><div class="dn">Day 13 · 待規劃</div><div class="dd">05/20 週三</div><div class="dc-city">🇳🇱 阿姆斯特丹</div></div>
+  <div class="arr">▾</div>
+</summary>
+<div class="dbi">
+  <a class="wb" href="https://www.google.com/search?q=Amsterdam+weather" target="_blank" rel="noopener">
+    <div class="wb-em">🌤️ 🇳🇱</div><div class="wb-t"><div class="wb-lbl">今日天氣預報</div><div class="wb-city">點此查看 Amsterdam 天氣</div></div><div class="wb-arr">›</div>
+  </a>
+
+  <div class="sc"><div class="st"><div class="sn">水壩廣場 Dam Square</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>阿姆斯特丹的中心廣場，國家紀念碑矗立其中，莊嚴肅穆</li><li>廣場四周有王宮、新教堂等重要建築環繞，是城市歷史核心</li><li>免費自由參觀，街頭藝人表演不斷</li></ul><a class="hl" href="https://www.google.com/search?q=Dam+Square+Amsterdam+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Dam+Square+Amsterdam" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+
+  <div class="emp" style="padding-top:6px"><div style="font-size:12px;color:#bbb">🗺️ 下午及晚上行程尚未安排<br>可考慮：運河遊船、Vondelpark散步、博物館廣場</div></div>
+</div>
+</details>
+
+<!-- ══════════════════════════════════════
+     DAY 14
+══════════════════════════════════════ -->
+<details class="dc">
+<summary class="dh am">
+  <div class="dl"><div class="dn">Day 14 · 日歸行程</div><div class="dd">05/21 週四</div><div class="dc-city">🇳🇱 阿姆斯特丹 ↔ 羊角村</div></div>
+  <div class="arr">▾</div>
+</summary>
+<div class="dbi">
+  <a class="wb" href="https://www.google.com/search?q=Giethoorn+weather" target="_blank" rel="noopener">
+    <div class="wb-em">🌤️ 🇳🇱</div><div class="wb-t"><div class="wb-lbl">今日天氣預報</div><div class="wb-city">點此查看 Giethoorn 天氣</div></div><div class="wb-arr">›</div>
+  </a>
+  <div class="trb">
+    <div class="tri">🚌</div>
+    <div>
+      <div class="trl">日歸行程 · 羊角村</div>
+      <div class="trd">透過 Klook 預訂阿姆斯特丹來回接駁<br>荷蘭最美小村莊，木屋與運河構成如畫風景<br>晚上返回阿姆斯特丹</div>
+      <span class="trp">🔄 交通細節確認中</span>
+    </div>
+  </div>
+
+  <div class="sc"><div class="st"><div class="sn">羊角村 Giethoorn 一日遊</div></div><div class="tags"><span class="tag t-bkd">📌 待訂（Klook）</span></div><ul class="pts"><li>荷蘭最美的「水上村莊」，沒有道路只有運河與小橋，宛如童話世界</li><li>可租借靜音電動船自由探索村落，或選擇有導覽的遊船行程</li><li>建議透過Klook預訂來回接駁，省去交通規劃的麻煩</li></ul><a class="hl" href="https://www.google.com/search?q=Giethoorn+%E7%BE%8A%E8%A7%92%E6%9D%91+%E7%87%9F%E6%A5%AD%E6%99%82%E9%96%93" target="_blank" rel="noopener">🕐 查詢營業時間</a><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Giethoorn+Netherlands" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+</div>
+</details>
+
+<!-- ══════════════════════════════════════
+     DAY 15
+══════════════════════════════════════ -->
+<details class="dc">
+<summary class="dh fl">
+  <div class="dl"><div class="dn">Day 15 · 返程日</div><div class="dd">05/22 週五</div><div class="dc-city">✈️ 阿姆斯特丹 → 返台</div></div>
+  <div class="arr">▾</div>
+</summary>
+<div class="dbi">
+  <a class="wb" href="https://www.google.com/search?q=Amsterdam+weather" target="_blank" rel="noopener">
+    <div class="wb-em">🌤️ 🇳🇱</div><div class="wb-t"><div class="wb-lbl">今日天氣預報</div><div class="wb-city">點此查看 Amsterdam 天氣</div></div><div class="wb-arr">›</div>
+  </a>
+  <div class="trb">
+    <div class="tri">✈️</div>
+    <div>
+      <div class="trl">返程日</div>
+      <div class="trd">搭機由阿姆斯特丹史基浦機場返回台灣<br>出發時間待確認</div>
+      <span class="trp">🔄 航班時間確認中</span>
+    </div>
+  </div>
+  <div class="emp"><span class="bi">🏠</span>旅程結束，平安回家！</div>
+</div>
+</details>
+
+</div><!-- end .wrap -->
+
+</body>
+</html>
