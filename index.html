@@ -81,6 +81,20 @@ a.mb:active{background:#EEF3FF;border-color:#4285F4}
 .emp{text-align:center;padding:20px 0 12px;color:var(--tm);font-size:13px}
 .emp .bi{font-size:34px;display:block;margin-bottom:8px}
 svg.pin{width:14px;height:14px;flex-shrink:0}
+  a.accom {
+  display: flex;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: opacity 0.15s, background-color 0.15s;
+}
+a.accom:active {
+  opacity: 0.7;
+  background-color: rgba(0,0,0,0.05);
+}
+  .dbi .sc:first-child {
+  margin-top: 10px;
+}
 </style>
 </head>
 <body>
@@ -103,7 +117,7 @@ svg.pin{width:14px;height:14px;flex-shrink:0}
   <div class="trb"><div class="tri">✈️</div><div><div class="trl">出發日 · 長途飛行</div><div class="trd">06:00 - 06:20 桃園機場第一航廈 <br>08:20 - 16:30 抵達希思羅機場第三航廈</div></div></div>
   <div class="emp"><span class="bi">🛫</span>抵達後前往住宿，好好休息！</div>
 </div>
-<div class="accom"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">New Kent Apartments</div></div></div>
+<a class="accom" href="https://maps.app.goo.gl/iTw3QiuHaQ7iUfci9" target="_blank" rel="noopener"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">New Kent Apartments</div></div></a>
 </details>
 
 <!-- ══ DAY 2 ══ -->
@@ -154,7 +168,7 @@ svg.pin{width:14px;height:14px;flex-shrink:0}
     <a class="mb" href="https://www.google.com/maps/search/?api=1&query=Selfridges+Oxford+Street+London" target="_blank" rel="noopener"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a>
   </div>
 </div>
-<div class="accom"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">New Kent Apartments</div></div></div>
+<a class="accom" href="https://maps.app.goo.gl/iTw3QiuHaQ7iUfci9" target="_blank" rel="noopener"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">New Kent Apartments</div></div></a>
 </details>
 
 <!-- ══ DAY 3 ══ -->
@@ -208,7 +222,7 @@ svg.pin{width:14px;height:14px;flex-shrink:0}
     <a class="mb" href="https://www.google.com/maps/search/?api=1&query=Five+Guys+Tower+Bridge+London" target="_blank" rel="noopener"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a>
   </div>
 </div>
-<div class="accom"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">New Kent Apartments</div></div></div>
+<a class="accom" href="https://maps.app.goo.gl/iTw3QiuHaQ7iUfci9" target="_blank" rel="noopener"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">New Kent Apartments</div></div></a>
 </details>
 
 <!-- ══ DAY 4 ══ -->
@@ -224,7 +238,7 @@ svg.pin{width:14px;height:14px;flex-shrink:0}
   <div class="sc"><div class="st"><div class="sn">倫敦眼 London Eye</div></div><div class="at"><div class="at-ic">⏰</div><div><div class="at-lbl">入場時間</div><div class="at-val">17:30</div><div class="at-note">請於17:15前抵達入場</div></div></div><div class="tags"><span class="tag t-pass">🎫 London Pass</span><span class="tag t-fee">💰 £29</span></div><ul class="pts"><li>高135公尺的觀景摩天輪，每艙可容納25人，緩慢旋轉約30分鐘</li></ul><a class="mb" href="https://www.google.com/maps/search/?api=1&query=London+Eye" target="_blank" rel="noopener"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
   <div class="sc"><div class="st"><div class="sn">泰晤士河遊船</div><span class="stb">🕐 10:00 - 19:35 </span></div><div class="tags"><span class="tag t-pass">🎫 London Pass</span><span class="tag t-fee">💰 £18</span></div><div class="note">⚠️ 現場排隊，19:35結束營業</div><ul class="pts"><li>從南岸碼頭出發，沿泰晤士河欣賞夜幕低垂的兩岸地標</li></ul><a class="mb" href="https://maps.app.goo.gl/djGt6GanLS7yPa8B8" target="_blank" rel="noopener"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
 </div>
-<div class="accom"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">New Kent Apartments</div></div></div>
+<a class="accom" href="https://maps.app.goo.gl/iTw3QiuHaQ7iUfci9" target="_blank" rel="noopener"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">New Kent Apartments</div></div></a>
 </details>
 
 <!-- ══ DAY 5 ══ -->
@@ -238,7 +252,7 @@ svg.pin{width:14px;height:14px;flex-shrink:0}
   </ul><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Natural+History+Museum+London" target="_blank" rel="noopener"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
   <div class="sc"><div class="st"><div class="sn">哈洛德百貨 Harrods</div><span class="stb">🕐 10:00 - 21:00 關</span></div><div class="tags"></div><ul class="pts"><li>英國最著名頂級百貨，創立於1849年，7層樓超過330個部門</li><li>哈洛德百貨在1898年，就建立了世界第一座手扶梯，並提供白蘭地酒以舒緩顧客搭乘手扶梯時的緊張感，是百貨手扶梯始祖。</li><li>前老闆 Mohamed Al-Fayed 在1997年時斥資2,000萬英鎊打造埃及手扶梯，天花板、牆壁滿滿都是法老王、埃及豔后與人面獅身像的彩繪雕刻。</li></ul><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Harrods+London" target="_blank" rel="noopener"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
 </div>
-<div class="accom"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">New Kent Apartments</div></div></div>
+<a class="accom" href="https://maps.app.goo.gl/iTw3QiuHaQ7iUfci9" target="_blank" rel="noopener"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">New Kent Apartments</div></div></a>
 </details>
 
 <!-- ══ DAY 6 ══ -->
@@ -250,7 +264,7 @@ svg.pin{width:14px;height:14px;flex-shrink:0}
   <div class="sc"><div class="st"><div class="sn">Paddington Bear Statue 帕丁頓熊雕像</div></div><div class="at"><div class="at-ic">⏰</div><div><div class="at-lbl">集合時間</div><div class="at-val">12:50</div><div class="at-note">13:20 活動前30分鐘抵達，先買好食物</div></div></div><div class="tags"></div><ul class="pts"><li>13:20出發前往哈利波特影城</li></ul><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Paddington+Bear+Statue+London" target="_blank" rel="noopener"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
   <div class="sc"><div class="st"><div class="sn">哈利波特影城 Warner Bros. Studio Tour</div><span class="stb">📌 入場時間已定</span></div><div class="at"><div class="at-ic">⏰</div><div><div class="at-lbl">出發時間</div><div class="at-val">13:20</div><div class="at-note">總行程約6-7小時，晚上約20:00返回</div></div></div><div class="tags"><span class="tag t-bkd">📌 已訂</span></div><ul class="pts"><li>位於倫敦北部Watford，完整重現哈利波特電影拍攝場景與道具</li><li>包含對角巷、霍格華茲大廳、魔法部等原始布景，粉絲必訪</li></ul><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Warner+Bros+Studio+Tour+London+Watford" target="_blank" rel="noopener"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
 </div>
-<div class="accom"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">New Kent Apartments</div></div></div>
+<a class="accom" href="https://maps.app.goo.gl/iTw3QiuHaQ7iUfci9" target="_blank" rel="noopener"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">New Kent Apartments</div></div></a>
 </details>
 
 <!-- ══ DAY 7 ══ -->
@@ -259,7 +273,7 @@ svg.pin{width:14px;height:14px;flex-shrink:0}
 <div class="dbi">
   <div class="emp"><span class="bi">🗺️</span>近郊行程規劃中<br><span style="font-size:12px;color:#bbb">可選：巴斯、牛津、劍橋、溫莎城堡等一日遊</span></div>
 </div>
-<div class="accom"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">New Kent Apartments</div></div></div>
+<a class="accom" href="https://maps.app.goo.gl/iTw3QiuHaQ7iUfci9" target="_blank" rel="noopener"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">New Kent Apartments</div></div></a>
 </details>
 
 <!-- ══ DAY 8 ══ -->
@@ -274,7 +288,7 @@ svg.pin{width:14px;height:14px;flex-shrink:0}
   </u><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Victoria+and+Albert+Museum+London" target="_blank" rel="noopener"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
   <div class="trb"><div class="tri">🚄</div><div><div class="trl">跨國移動 · Eurostar</div><div class="trd">14:45 抵達 London St Pancras Int'l（提早到站 / 準備食物）<br>17:04 → 20:05 抵達 Brussel-Zuid<br>抵達後前往飯店 check-in 休息</div></div></div>
 </div>
-<div class="accom"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">Numa Brussels Royal Galleries</div></div></div>
+<a class="accom" href="https://maps.app.goo.gl/2tBMh1WAGw8EKnBr7" target="_blank" rel="noopener"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">Numa Brussels Royal Galleries</div></div></a>
 </details>
 
 <!-- ══ DAY 9 ══ -->
@@ -316,7 +330,7 @@ svg.pin{width:14px;height:14px;flex-shrink:0}
   <div class="sc"><div class="st"><div class="sn">愛之湖 Minnewater</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>布魯日南側的浪漫湖泊公園，白天鵝優雅漫遊於湖面，如詩如畫</li></ul><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Minnewater+Lake+Bruges+Belgium" target="_blank" rel="noopener"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
   <div class="trb"><div class="tri">🚂</div><div><div class="trl">返回布魯塞爾</div><div class="trd">遊覽結束後搭火車返回布魯塞爾（約1小時）</div></div></div>
 </div>
-<div class="accom"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">Numa Brussels Royal Galleries</div></div></div>
+<a class="accom" href="https://maps.app.goo.gl/2tBMh1WAGw8EKnBr7" target="_blank" rel="noopener"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">Numa Brussels Royal Galleries</div></div></a>
 </details>
   
 <!-- ══ DAY 10 ══ -->
@@ -341,7 +355,7 @@ svg.pin{width:14px;height:14px;flex-shrink:0}
   <div class="sc"><div class="st"><div class="sn">藝術之丘 Mont des Arts</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>布魯塞爾市中心的文化藝術高地，集中多所博物館與音樂廳</li><li>山丘頂端可俯瞰舊城區全景，是城市最佳觀景點之一</li></ul><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Mont+des+Arts+Brussels+Belgium" target="_blank" rel="noopener"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
   <div class="trb"><div class="tri">🚄</div><div><div class="trl">夜車 · 前往阿姆斯特丹</div><div class="trd">20:00 Brussel-Zuid 出發<br>20:22 → 22:02 抵達 Schiphol Airport<br>再從史基浦機場轉車前往飯店</div></div></div>
 </div>
-<div class="accom"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">MEININGER Hotel Amsterdam City West</div></div></div>
+<a class="accom" href="https://maps.app.goo.gl/pBeh4yXRdmR1QuSEA" target="_blank" rel="noopener"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">MEININGER Hotel Amsterdam City West</div></div></a>
 </details>
 <!-- ══ DAY 11 ══ -->
 <details class="dc">
@@ -358,7 +372,7 @@ Level 2：1600–1650年代，荷蘭國家博物館的精華，林布蘭跟維�
   <div class="sc"><div class="st"><div class="sn">梵谷博物館 Van Gogh Museum</div><span class="stb">🕐 09:00 - 18:00</span></div><div class="at"><div class="at-ic">⏰</div><div><div class="at-lbl">入場時間</div><div class="at-val">15:00</div><div class="at-note">語音介紹已付款，18:00閉館</div></div></div><div class="tags"><span class="tag t-paid">✅ 已支付</span><span class="tag t-fee">💰 €25</span></div><ul class="pts"><li>收藏全球最多梵谷真跡，包含《向日葵》《臥室》《星夜》等代表作</li><li>館內設計以梵谷生平為脈絡，帶領觀眾深入理解其藝術演變歷程</li></ul><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Van+Gogh+Museum+Amsterdam" target="_blank" rel="noopener"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
   <div class="sc"><div class="st"><div class="sn">紅燈區 De Wallen</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><div class="note">⚠️ 請勿對工作者拍照，尊重當地文化與規定</div><ul class="pts"><li>阿姆斯特丹著名歷史街區，保有中世紀運河街道風貌</li></ul><a class="mb" href="https://www.google.com/maps/search/?api=1&query=De+Wallen+Amsterdam+Red+Light+District" target="_blank" rel="noopener"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
 </div>
-<div class="accom"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">MEININGER Hotel Amsterdam City West</div></div></div>
+<a class="accom" href="https://maps.app.goo.gl/pBeh4yXRdmR1QuSEA" target="_blank" rel="noopener"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">MEININGER Hotel Amsterdam City West</div></div></a>
 </details>
   
 <!-- ══ DAY 12 ══ -->
@@ -372,7 +386,7 @@ Level 2：1600–1650年代，荷蘭國家博物館的精華，林布蘭跟維�
   <div class="sc"><div class="st"><div class="sn">水壩廣場 Dam Square</div></div><div class="tags"><span class="tag t-free">🆓 免費</span></div><ul class="pts"><li>阿姆斯特丹的中心廣場，國家紀念碑矗立其中，是城市歷史核心</li><li>廣場四周有王宮、新教堂等重要建築環繞，街頭藝人表演不斷</li><li>遊船結束後步行可達，順路一逛</li></ul><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Dam+Square+Amsterdam" target="_blank" rel="noopener"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
   <div class="sc"><div class="st"><div class="sn">安妮之家 Anne Frank House</div></div><div class="tags"><span class="tag t-bkd">📌 待約</span><span class="tag t-fee">💰 €16.5</span></div><div class="note">⚠️ 票券極難搶購，建議持續關注官網補票</div><ul class="pts"><li>二戰期間安妮·法蘭克與家人躲避納粹迫害的真實地點</li><li>館內保留密室原貌，展示安妮日記手稿，每位訪客都深受感動</li></ul><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Anne+Frank+House+Amsterdam" target="_blank" rel="noopener"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
 </div>
-<div class="accom"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">MEININGER Hotel Amsterdam City West</div></div></div>
+<a class="accom" href="https://maps.app.goo.gl/pBeh4yXRdmR1QuSEA" target="_blank" rel="noopener"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">MEININGER Hotel Amsterdam City West</div></div></a>
 </details>
 
 <!-- ══ DAY 13 ══ -->
@@ -381,7 +395,7 @@ Level 2：1600–1650年代，荷蘭國家博物館的精華，林布蘭跟維�
 <div class="dbi">
   <div class="emp"><span class="bi">🗺️</span>行程待規劃<br><span style="font-size:12px;color:#bbb">可考慮：Vondelpark散步、電影博物館、NEMO科學館、Jordaan區漫步</span></div>
 </div>
-<div class="accom"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">MEININGER Hotel Amsterdam City West</div></div></div>
+<a class="accom" href="https://maps.app.goo.gl/pBeh4yXRdmR1QuSEA" target="_blank" rel="noopener"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">MEININGER Hotel Amsterdam City West</div></div></a>
 </details>  
  
 <!-- ══ DAY 14 ══ -->
@@ -389,9 +403,9 @@ Level 2：1600–1650年代，荷蘭國家博物館的精華，林布蘭跟維�
 <summary class="dh am"><div class="dl"><div class="dn">Day 14 · 羊角村日歸</div><div class="dd">05/21 週四</div><div class="dc-city">🇳🇱 阿姆斯特丹 ↔ 羊角村</div></div><div class="arr">▾</div></summary>
 <div class="dbi">
   <div class="sc"><div class="st"><div class="sn">Starbucks 集合點</div></div><div class="at"><div class="at-ic">⏰</div><div><div class="at-lbl">集合時間</div><div class="at-val">08:30</div><div class="at-note">阿姆斯特丹中央車站後門的 Starbucks</div></div></div><div class="tags"><span class="tag t-free">🆓 集合點</span></div><ul class="pts"><li>集合地點為阿姆斯特丹中央車站後門的Starbucks，非常好找</li><li>08:00抵達，08:20前完成集合準備出發</li><li>可在此買早餐咖啡，準備迎接美好的一天</li></ul><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Starbucks+Amsterdam+Centraal+back" target="_blank" rel="noopener"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
-  <div class="sc"><div class="st"><div class="sn">羊角村 Giethoorn 一日遊</div></div><div class="at"><div class="at-ic">⏰</div><div><div class="at-lbl">出發時間</div><div class="at-val">08:30</div><div class="at-note">晚上返回阿姆斯特丹市中心，含午餐</div></div></div><div class="tags"></div><ul class="pts"><li>荷蘭最美的「水上村莊」，沒有道路只有運河與小橋，宛如童話世界</li><li>08:30從中央車站出發，全日遊覽，晚上返回市區</li></ul><a class="mb" href="https://www.google.com/maps/search/?api=1&query=Giethoorn+Netherlands" target="_blank" rel="noopener"><svg class="pin" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>Google Map 導航</a></div>
+  <div class="sc"><div class="st"><div class="sn">羊角村 Giethoorn 一日遊</div></div><ul class="pts"><li>荷蘭最美的「水上村莊」，沒有道路只有運河與小橋，宛如童話世界</li><li>08:30從中央車站出發，全日遊覽，晚上返回市區</li></ul>
 </div>
-<div class="accom"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">MEININGER Hotel Amsterdam City West</div></div></div>
+<a class="accom" href="https://maps.app.goo.gl/pBeh4yXRdmR1QuSEA" target="_blank" rel="noopener"><div class="accom-ic">🛌</div><div><div class="accom-lbl">今日住宿</div><div class="accom-name">MEININGER Hotel Amsterdam City West</div></div></a>
 </details>
 <!-- ══ DAY 15 ══ -->
 <details class="dc">
